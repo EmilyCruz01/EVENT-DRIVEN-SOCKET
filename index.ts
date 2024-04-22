@@ -15,12 +15,12 @@ const server = app.listen(port, () => {
 const io: Server = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: ["http://localhost:5173/"] 
+    origin: ["*"] 
   }
 });
 
 io.on('connection', socket => {
-  socket.on('orden', orden => {
+  socket.on('orden-procesada', orden => {
     console.log('orden procesada y enviada: ', orden);
     io.emit('orden-procesada', orden);
   });
